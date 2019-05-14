@@ -38,4 +38,4 @@ Icon?
 build/
 .flutter-plugins
 
-.ios/Flutter/engine/Flutter.framework/
+.ios/
