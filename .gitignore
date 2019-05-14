@@ -41,3 +41,4 @@ build/
 .ios/
 .android/local.properties
 .android/app/src/
+.android/Flutter/flutter.iml
