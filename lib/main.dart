@@ -97,14 +97,13 @@ class App extends StatelessWidget {
         stream: appBloc.getPage,
         initialData: appBloc._page,
         builder: (context, snapshot) {
-          print(snapshot.data);
           return _widgetForRoute(snapshot.data);
         });
   }
 }
 
 Widget _widgetForRoute(String route) {
-  print("Initial Route: " + route);
+  print("Switch Route: " + route);
   switch (route) {
     case 'page_main':
       return MyApp();
