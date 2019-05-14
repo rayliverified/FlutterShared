@@ -40,3 +40,4 @@ build/
 
 .ios/
 .android/local.properties
+.android/app/src/
