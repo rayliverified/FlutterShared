@@ -39,3 +39,4 @@ build/
 .flutter-plugins
 
 .ios/
+.android/local.properties
