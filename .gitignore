@@ -42,6 +42,7 @@ build/
 -.ios/Flutter/App.framework/Info.plist
 .ios/Flutter/.symlinks
 .ios/Flutter/engine
+.ios/ServiceDefinitions.json
 .android/local.properties
 .android/app/src/
 .android/Flutter/flutter.iml
