@@ -36,14 +36,17 @@ Icon?
 .tags*
 
 build/
+.ios/
 .flutter-plugins
 
+# Flutter iOS Specific Files
+# Ignore generated Flutter iOS Files
 .ios/Flutter/App.framework/
 -.ios/Flutter/App.framework/Info.plist
 .ios/Flutter/.symlinks
 .ios/Flutter/engine
 .ios/ServiceDefinitions.json
-.android/local.properties
-.android/app/src/
 .android/Flutter/flutter.iml
 .android/.gradle/
+.android/local.properties
+
