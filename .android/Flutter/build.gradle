@@ -41,6 +41,7 @@ android {
         debug {
         }
     }
+    flavorDimensions "environment"
     productFlavors {
         dev {
         }
