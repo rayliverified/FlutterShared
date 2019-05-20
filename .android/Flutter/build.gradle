@@ -44,10 +44,13 @@ android {
     flavorDimensions "environment"
     productFlavors {
         dev {
+            dimension "environment"
         }
         qa {
+            dimension "environment"
         }
         prod {
+            dimension "environment"
         }
     }
 }
