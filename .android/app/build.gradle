@@ -20,16 +20,27 @@ android {
     }
 
     buildTypes {
-        profile {
-            initWith debug
-        }
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
+        debug {
+            initWith debug
+        }
     }
-
+    flavorDimensions "environment"
+    productFlavors {
+        dev {
+            dimension "environment"
+        }
+        qa {
+            dimension "environment"
+        }
+        prod {
+            dimension "environment"
+        }
+    }
 }
 buildDir = new File(rootProject.projectDir, "../build/host")
 dependencies {
