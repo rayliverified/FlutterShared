@@ -35,6 +35,20 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
+    buildTypes {
+        release {
+        }
+        debug {
+        }
+    }
+    productFlavors {
+        dev {
+        }
+        qa {
+        }
+        prod {
+        }
+    }
 }
 
 flutter {
