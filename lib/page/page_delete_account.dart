@@ -1,15 +1,270 @@
 import 'package:flutter/material.dart';
 
 class DeleteAccountPage extends StatelessWidget {
-  void onSubmit(BuildContext context) {}
+  void onSubmit(BuildContext context) {
+    print("onSubmitPressed");
+  }
 
-  void onSkip(BuildContext context) {}
+  void onSkip(BuildContext context) {
+    print("onSkipPressed");
+  }
 
-  void onExitPressed(BuildContext context) {}
+  void onExitPressed(BuildContext context) {
+    print("onExitPressed");
+  }
+
+  void onDeletePressed(BuildContext context) {
+    print("onDeletePressed");
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: buildDeleteAccountPage2(context));
+    return MaterialApp(home: buildDeleteAccountPage1(context));
+  }
+
+  Scaffold buildDeleteAccountPage1(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        constraints: BoxConstraints.expand(),
+        decoration: BoxDecoration(
+          color: Color.fromARGB(255, 255, 255, 255),
+        ),
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            Positioned(
+              left: 0,
+              top: 0,
+              right: 0,
+              bottom: 0,
+              child: GestureDetector(
+                onTap: () => this.onExitPressed(context),
+                child: Opacity(
+                  opacity: 0.6,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                    ),
+                    child: Container(),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 72,
+              child: Container(
+                width: 300,
+                height: 256,
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Positioned(
+                      top: 40,
+                      child: Container(
+                        width: 300,
+                        height: 215,
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 300,
+                              height: 180,
+                              margin: EdgeInsets.only(top: 35),
+                              child: Stack(
+                                alignment: Alignment.topCenter,
+                                children: [
+                                  Positioned(
+                                    left: 0,
+                                    top: 0,
+                                    right: 0,
+                                    child: Container(
+                                      height: 180,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.topCenter,
+                                            child: Text(
+                                              "Are you sure?",
+                                              style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 251, 97, 0),
+                                                fontSize: 24,
+                                                fontFamily: "Product Sans",
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment: Alignment.topCenter,
+                                            child: Container(
+                                              width: 270,
+                                              margin: EdgeInsets.only(top: 10),
+                                              child: Text(
+                                                "If you proceed, you will lose all of your data. You cannot undo this action.",
+                                                style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 33, 33, 33),
+                                                  fontSize: 18,
+                                                  fontFamily: "Product Sans",
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment: Alignment.topCenter,
+                                            child: Container(
+                                              margin: EdgeInsets.only(top: 16),
+                                              child: Opacity(
+                                                opacity: 0.37,
+                                                child: Container(
+                                                  width: 300,
+                                                  height: 2,
+                                                  decoration: BoxDecoration(
+                                                    color: Color.fromARGB(
+                                                        255, 151, 151, 151),
+                                                  ),
+                                                  child: Container(),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            height: 56,
+                                            margin: EdgeInsets.only(right: 1),
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.stretch,
+                                              children: [
+                                                Align(
+                                                  alignment: Alignment.topLeft,
+                                                  child: Container(
+                                                    width: 149,
+                                                    height: 56,
+                                                    child: FlatButton(
+                                                      onPressed: () => this
+                                                          .onExitPressed(
+                                                              context),
+                                                      color: Colors.transparent,
+                                                      textColor: Color.fromARGB(
+                                                          255, 74, 144, 226),
+                                                      padding:
+                                                          EdgeInsets.all(0),
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      child: Text(
+                                                        "Cancel",
+                                                        style: TextStyle(
+                                                          fontSize: 18,
+                                                          fontFamily:
+                                                              "Product Sans",
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Spacer(),
+                                                Align(
+                                                  alignment: Alignment.topLeft,
+                                                  child: Container(
+                                                    width: 150,
+                                                    height: 56,
+                                                    child: FlatButton(
+                                                      onPressed: () => this
+                                                          .onDeletePressed(
+                                                              context),
+                                                      color: Colors.transparent,
+                                                      textColor: Color.fromARGB(
+                                                          255, 251, 97, 0),
+                                                      padding:
+                                                          EdgeInsets.all(0),
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      child: Text(
+                                                        "Delete",
+                                                        style: TextStyle(
+                                                          fontSize: 18,
+                                                          fontFamily:
+                                                              "Product Sans",
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 124,
+                                    child: Opacity(
+                                      opacity: 0.37,
+                                      child: Container(
+                                        width: 2,
+                                        height: 56,
+                                        decoration: BoxDecoration(
+                                          color: Color.fromARGB(
+                                              255, 151, 151, 151),
+                                        ),
+                                        child: Container(),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 0,
+                      child: Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          borderRadius: BorderRadius.all(Radius.circular(40)),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 35,
+                              height: 35,
+                              child: Image.asset(
+                                "assets/images/warning.png",
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Scaffold buildDeleteAccountPage2(BuildContext context) {
@@ -234,18 +489,21 @@ class DeleteAccountPage extends StatelessWidget {
         child: Stack(
           alignment: Alignment.topCenter,
           children: [
-            Positioned(
-              left: 0,
-              top: 0,
-              right: 0,
-              bottom: 0,
-              child: Opacity(
-                opacity: 0.6,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 0, 0, 0),
+            GestureDetector(
+              onTap: () => this.onExitPressed(context),
+              child: Positioned(
+                left: 0,
+                top: 0,
+                right: 0,
+                bottom: 0,
+                child: Opacity(
+                  opacity: 0.6,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                    ),
+                    child: Container(),
                   ),
-                  child: Container(),
                 ),
               ),
             ),
