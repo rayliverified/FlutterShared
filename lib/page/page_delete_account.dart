@@ -30,8 +30,6 @@ class DeleteAccountBloc implements BlocBase {
 class DeleteAccountPageWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final AppBloc appBloc = BlocProvider.of<AppBloc>(context);
-    appBloc.updateBack(true);
     return BlocProvider<DeleteAccountBloc>(
         bloc: DeleteAccountBloc(), child: DeleteAccountPage());
   }
