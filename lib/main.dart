@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_android/bloc/BlocProvider.dart';
 import 'package:flutter_android/page/page_main.dart';
+import 'package:flutter_android/route_switcher.dart';
 import 'package:flutter_android/themes.dart';
 import 'package:flutter_android/utils.dart';
 import 'package:rxdart/rxdart.dart';
@@ -24,6 +25,7 @@ class AppBloc implements BlocBase {
   }
 
   AppBloc() {
+    _page = "page_delete_account";
     initPlatformChannels();
   }
 
@@ -97,25 +99,8 @@ class App extends StatelessWidget {
         stream: appBloc.getPage,
         initialData: appBloc._page,
         builder: (context, snapshot) {
-          return _widgetForRoute(snapshot.data);
+          return RouteSwitcher().widgetForRoute(snapshot.data);
         });
-  }
-}
-
-Widget _widgetForRoute(String route) {
-  print("Switch Route: " + route);
-  switch (route) {
-    case 'page_main':
-      return MyApp();
-    case 'page_transparent':
-      return Transparent();
-    default:
-      return Center(
-        child: Text(
-          'Unknown route: $route',
-          textDirection: TextDirection.ltr,
-        ),
-      );
   }
 }
 

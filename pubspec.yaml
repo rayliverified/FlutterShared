@@ -21,6 +21,13 @@ flutter:
   assets:
     - assets/placeholder_cover.jpg
     - assets/placeholder_box.png
+    - assets/images/
+  fonts:
+    - family: Product Sans
+      fonts:
+        - asset: assets/fonts/Product Sans Regular.ttf
+        - asset: assets/fonts/Product Sans Bold.ttf
+          weight: 700
   module:
     androidPackage: com.example.flutterandroid
     iosBundleIdentifier: com.example.flutterAndroid
