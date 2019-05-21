@@ -447,6 +447,13 @@ class DeleteAccountPage extends StatelessWidget {
                                                   fontFamily: "Product Sans",
                                                 ),
                                                 maxLines: null,
+                                                textInputAction:
+                                                    TextInputAction.done,
+                                                keyboardType:
+                                                    TextInputType.multiline,
+                                                textCapitalization:
+                                                    TextCapitalization
+                                                        .sentences,
                                               ),
                                             ),
                                             Container(
