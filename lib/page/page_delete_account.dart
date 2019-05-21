@@ -438,6 +438,7 @@ class DeleteAccountPage extends StatelessWidget {
                                                   contentPadding:
                                                       EdgeInsets.all(8),
                                                   border: InputBorder.none,
+                                                  hintMaxLines: 5,
                                                 ),
                                                 style: TextStyle(
                                                   color: Color.fromARGB(
