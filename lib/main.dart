@@ -12,6 +12,10 @@ import 'package:rxdart/rxdart.dart';
 void main() => runApp(BlocProvider<AppBloc>(bloc: AppBloc(), child: App()));
 
 class AppBloc implements BlocBase {
+  static const String CHANNEL_METHOD_PAGE = "CHANNEL_METHOD_PAGE";
+  static const String CHANNEL_METHOD_NAVIGATION = "CHANNEL_METHOD_NAVIGATION";
+  static const String NAVIGATION_BACK = "NAVIGATION_BACK";
+  static const String NAVIGATION_CLOSE = "NAVIGATION_CLOSE";
   static const channel = MethodChannel('app');
 
   String _page = window.defaultRouteName ?? "";
@@ -45,12 +49,12 @@ class AppBloc implements BlocBase {
     // Receive method invocations from platform and return results.
     channel.setMethodCallHandler((MethodCall call) async {
       switch (call.method) {
-        case 'page':
+        case 'PAGE':
           updatePage(call.arguments);
           return;
-        case 'navigation':
+        case 'NAVIGATION':
           switch (call.arguments) {
-            case "back":
+            case "BACK":
               {}
           }
           return;
@@ -60,12 +64,12 @@ class AppBloc implements BlocBase {
     });
   }
 
-  void navigate(Navigation navigation) {
+  void navigate(String navigation) {
     switch (navigation) {
-      case Navigation.BACK:
+      case AppBloc.NAVIGATION_BACK:
         navigateBack();
         return;
-      case Navigation.CLOSE:
+      case AppBloc.NAVIGATION_CLOSE:
         navigateClose();
         return;
     }
@@ -105,8 +109,6 @@ class AppBloc implements BlocBase {
   }
 }
 
-enum Navigation { BACK, CLOSE }
-
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -145,7 +147,7 @@ class Transparent extends StatelessWidget {
           body: Center(
               child: GestureDetector(
                   onTap: () {
-                    appBloc.navigate(Navigation.BACK);
+                    appBloc.navigate(AppBloc.NAVIGATION_BACK);
                   },
                   child: Text('Transparent Scaffold Background'))),
           backgroundColor: HexColor('#00FFFFFF'),

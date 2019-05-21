@@ -63,7 +63,7 @@ class DeleteAccountPage extends StatelessWidget {
   void onExitPressed(BuildContext context) {
     print("onExitPressed");
     final AppBloc appBloc = BlocProvider.of<AppBloc>(context);
-    appBloc.navigate(Navigation.CLOSE);
+    appBloc.navigate(AppBloc.NAVIGATION_CLOSE);
   }
 
   @override
