@@ -11,7 +11,7 @@ class RouteSwitcher {
       case 'page_transparent':
         return Transparent();
       case 'page_delete_account':
-        return DeleteAccountPage();
+        return DeleteAccountPageWrapper();
       default:
         return Center(
           child: Text(

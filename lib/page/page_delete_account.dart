@@ -1,12 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_android/bloc/BlocProvider.dart';
+import 'package:rxdart/rxdart.dart';
+
+enum DeleteAccountPages { DELETE_ACCOUNT_1, DELETE_ACCOUNT_2, DELETE_ACCOUNT_3 }
+
+class DeleteAccountBloc implements BlocBase {
+  DeleteAccountPages _page = DeleteAccountPages.DELETE_ACCOUNT_1;
+
+  BehaviorSubject<DeleteAccountPages> pageController =
+      BehaviorSubject<DeleteAccountPages>();
+  ValueObservable get getPage => pageController;
+
+  void dispose() {
+    pageController.close();
+  }
+
+  DeleteAccountBloc() {
+//    _page = DeleteAccountPages.DELETE_ACCOUNT_1;
+  }
+
+  void updatePage(DeleteAccountPages page) {
+    _page = page;
+    pageController.sink.add(_page);
+  }
+}
+
+class DeleteAccountPageWrapper extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<DeleteAccountBloc>(
+        bloc: DeleteAccountBloc(), child: DeleteAccountPage());
+  }
+}
 
 class DeleteAccountPage extends StatelessWidget {
   void onSubmit(BuildContext context) {
     print("onSubmitPressed");
+    final DeleteAccountBloc deleteAccountBloc =
+        BlocProvider.of<DeleteAccountBloc>(context);
+    deleteAccountBloc.updatePage(DeleteAccountPages.DELETE_ACCOUNT_3);
   }
 
   void onSkip(BuildContext context) {
     print("onSkipPressed");
+    final DeleteAccountBloc deleteAccountBloc =
+        BlocProvider.of<DeleteAccountBloc>(context);
+    deleteAccountBloc.updatePage(DeleteAccountPages.DELETE_ACCOUNT_3);
   }
 
   void onExitPressed(BuildContext context) {
@@ -15,11 +54,35 @@ class DeleteAccountPage extends StatelessWidget {
 
   void onDeletePressed(BuildContext context) {
     print("onDeletePressed");
+    final DeleteAccountBloc deleteAccountBloc =
+        BlocProvider.of<DeleteAccountBloc>(context);
+    deleteAccountBloc.updatePage(DeleteAccountPages.DELETE_ACCOUNT_2);
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: buildDeleteAccountPage1(context));
+    final DeleteAccountBloc deleteAccountBloc =
+        BlocProvider.of<DeleteAccountBloc>(context);
+    return StreamBuilder(
+        stream: deleteAccountBloc.getPage,
+        initialData: deleteAccountBloc._page,
+        builder: (context, snapshot) {
+          return MaterialApp(home: _routeSwitcher(context, snapshot.data));
+        });
+  }
+
+  Widget _routeSwitcher(
+      BuildContext context, DeleteAccountPages deleteAccountPages) {
+    switch (deleteAccountPages) {
+      case DeleteAccountPages.DELETE_ACCOUNT_1:
+        return buildDeleteAccountPage1(context);
+      case DeleteAccountPages.DELETE_ACCOUNT_2:
+        return buildDeleteAccountPage2(context);
+      case DeleteAccountPages.DELETE_ACCOUNT_3:
+        return buildDeleteAccountPage3(context);
+      default:
+        return Container();
+    }
   }
 
   Scaffold buildDeleteAccountPage1(BuildContext context) {
@@ -489,13 +552,13 @@ class DeleteAccountPage extends StatelessWidget {
         child: Stack(
           alignment: Alignment.topCenter,
           children: [
-            GestureDetector(
-              onTap: () => this.onExitPressed(context),
-              child: Positioned(
-                left: 0,
-                top: 0,
-                right: 0,
-                bottom: 0,
+            Positioned(
+              left: 0,
+              top: 0,
+              right: 0,
+              bottom: 0,
+              child: GestureDetector(
+                onTap: () => this.onExitPressed(context),
                 child: Opacity(
                   opacity: 0.6,
                   child: Container(
