@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_android/bloc/BlocProvider.dart';
 import 'package:flutter_android/main.dart';
+import 'package:flutter_android/ui/ui_misc.dart';
 import 'package:flutter_android/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -29,6 +30,8 @@ class DeleteAccountBloc implements BlocBase {
 class DeleteAccountPageWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final AppBloc appBloc = BlocProvider.of<AppBloc>(context);
+    appBloc.updateBack(true);
     return BlocProvider<DeleteAccountBloc>(
         bloc: DeleteAccountBloc(), child: DeleteAccountPage());
   }
@@ -226,7 +229,7 @@ class DeleteAccountPage extends StatelessWidget {
                                                       splashColor:
                                                           Colors.transparent,
                                                       highlightColor:
-                                                          Colors.transparent,
+                                                          highlightRipple(),
                                                       child: Text(
                                                         "Cancel",
                                                         style: TextStyle(
@@ -258,7 +261,7 @@ class DeleteAccountPage extends StatelessWidget {
                                                       splashColor:
                                                           Colors.transparent,
                                                       highlightColor:
-                                                          Colors.transparent,
+                                                          highlightRipple(),
                                                       child: Text(
                                                         "Delete",
                                                         style: TextStyle(
@@ -692,8 +695,7 @@ class DeleteAccountPage extends StatelessWidget {
                                                   255, 74, 144, 226),
                                               padding: EdgeInsets.all(0),
                                               splashColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
+                                              highlightColor: highlightRipple(),
                                               child: Text(
                                                 "Exit",
                                                 style: TextStyle(

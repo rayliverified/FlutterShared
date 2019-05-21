@@ -101,6 +101,7 @@ class AppBloc implements BlocBase {
 
   //END: Back Navigation
   void navigateClose() async {
+    updateBack(false);
     updatePage(RouteSwitcher.PAGE_BLANK);
     try {
       print(await channel.invokeMethod(
