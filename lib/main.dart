@@ -25,7 +25,7 @@ class AppBloc implements BlocBase {
   }
 
   AppBloc() {
-    _page = "page_delete_account";
+    _page = RouteSwitcher.PAGE_DELETE_ACCOUNT;
     initPlatformChannels();
   }
 
@@ -65,9 +65,13 @@ class AppBloc implements BlocBase {
       case Navigation.BACK:
         navigateBack();
         return;
+      case Navigation.CLOSE:
+        navigateClose();
+        return;
     }
   }
 
+  //BEGIN: Back navigation
   void navigateBack() async {
     try {
       print(await channel.invokeMethod("navigation", "back"));
@@ -87,9 +91,21 @@ class AppBloc implements BlocBase {
       print('Not implemented');
     }
   }
+
+  //END: Back Navigation
+  void navigateClose() async {
+    updatePage(RouteSwitcher.PAGE_BLANK);
+    try {
+      print(await channel.invokeMethod("navigation", "close"));
+    } on PlatformException catch (e) {
+      print('Failed: ${e.message}');
+    } on MissingPluginException {
+      print('Not implemented');
+    }
+  }
 }
 
-enum Navigation { BACK }
+enum Navigation { BACK, CLOSE }
 
 class App extends StatelessWidget {
   @override

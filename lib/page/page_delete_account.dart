@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_android/bloc/BlocProvider.dart';
+import 'package:flutter_android/main.dart';
 import 'package:rxdart/rxdart.dart';
 
 enum DeleteAccountPages { DELETE_ACCOUNT_1, DELETE_ACCOUNT_2, DELETE_ACCOUNT_3 }
@@ -15,9 +17,7 @@ class DeleteAccountBloc implements BlocBase {
     pageController.close();
   }
 
-  DeleteAccountBloc() {
-//    _page = DeleteAccountPages.DELETE_ACCOUNT_1;
-  }
+  DeleteAccountBloc() {}
 
   void updatePage(DeleteAccountPages page) {
     _page = page;
@@ -34,6 +34,15 @@ class DeleteAccountPageWrapper extends StatelessWidget {
 }
 
 class DeleteAccountPage extends StatelessWidget {
+  // DELETE_ACCOUNT_1 confirm delete button. Go to DELETE_ACCOUNT_2 on click.
+  void onDeletePressed(BuildContext context) {
+    print("onDeletePressed");
+    final DeleteAccountBloc deleteAccountBloc =
+        BlocProvider.of<DeleteAccountBloc>(context);
+    deleteAccountBloc.updatePage(DeleteAccountPages.DELETE_ACCOUNT_2);
+  }
+
+  // DELETE_ACCOUNT_2 submit feedback button.
   void onSubmit(BuildContext context) {
     print("onSubmitPressed");
     final DeleteAccountBloc deleteAccountBloc =
@@ -41,6 +50,7 @@ class DeleteAccountPage extends StatelessWidget {
     deleteAccountBloc.updatePage(DeleteAccountPages.DELETE_ACCOUNT_3);
   }
 
+  // DELETE_ACCOUNT_2 skip submit feedback. Go to DELETE_ACCOUNT_3 on click.
   void onSkip(BuildContext context) {
     print("onSkipPressed");
     final DeleteAccountBloc deleteAccountBloc =
@@ -48,15 +58,11 @@ class DeleteAccountPage extends StatelessWidget {
     deleteAccountBloc.updatePage(DeleteAccountPages.DELETE_ACCOUNT_3);
   }
 
+  // Exit DeleteAccountPages.
   void onExitPressed(BuildContext context) {
     print("onExitPressed");
-  }
-
-  void onDeletePressed(BuildContext context) {
-    print("onDeletePressed");
-    final DeleteAccountBloc deleteAccountBloc =
-        BlocProvider.of<DeleteAccountBloc>(context);
-    deleteAccountBloc.updatePage(DeleteAccountPages.DELETE_ACCOUNT_2);
+    final AppBloc appBloc = BlocProvider.of<AppBloc>(context);
+    appBloc.navigate(Navigation.CLOSE);
   }
 
   @override
@@ -358,137 +364,168 @@ class DeleteAccountPage extends StatelessWidget {
             Positioned(
               top: 72,
               child: Container(
-                width: 301,
-                height: 483,
+                width: 300,
+                height: 420,
                 child: Stack(
                   alignment: Alignment.topCenter,
                   children: [
                     Positioned(
-                      top: 4,
+                      top: 0,
                       right: 0,
                       child: Container(
-                        width: 301,
-                        height: 478,
+                        width: 300,
+                        height: 415,
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
                             Positioned(
                               top: 35,
-                              child: Container(
-                                width: 301,
-                                height: 443,
-                                decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15)),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      width: 255,
-                                      height: 392,
-                                      margin: EdgeInsets.only(top: 35),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            "We're sorry the NOCD app missed the mark. Would you mind telling us how we could improve?",
-                                            style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 33, 33, 33),
-                                              fontSize: 18,
-                                              fontFamily: "Product Sans",
-                                            ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          Container(
-                                            width: 253,
-                                            height: 193,
-                                            margin: EdgeInsets.only(top: 11),
-                                            decoration: BoxDecoration(
-                                              border: Border.all(
-                                                color: Color.fromARGB(
-                                                    255, 151, 151, 151),
-                                                width: 1,
-                                              ),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(9)),
-                                            ),
-                                            child: TextField(
-                                              decoration: InputDecoration(
-                                                hintText:
-                                                    "What needs were you unable to meet in the NOCD app? Are there any features that didn't meet your expectations?",
-                                                contentPadding:
-                                                    EdgeInsets.all(8),
-                                                border: InputBorder.none,
-                                                hintMaxLines: null,
-                                              ),
-                                              style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 0, 0, 0),
-                                                fontSize: 18,
-                                                fontFamily: "Product Sans",
-                                              ),
-                                              keyboardType:
-                                                  TextInputType.multiline,
-                                              maxLines: null,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 180,
-                                            height: 40,
-                                            margin: EdgeInsets.only(top: 18),
-                                            child: FlatButton(
-                                              onPressed: () =>
-                                                  this.onSubmit(context),
-                                              color: Color.fromARGB(
-                                                  255, 0, 163, 173),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(3))),
-                                              textColor: Color.fromARGB(
-                                                  255, 255, 255, 255),
-                                              padding: EdgeInsets.all(0),
-                                              highlightColor: Color.fromARGB(
-                                                  255, 33, 210, 237),
+                              child: GestureDetector(
+                                onTap: () {
+                                  print("hideKeyboard");
+                                  SystemChannels.textInput
+                                      .invokeMethod('TextInput.hide');
+                                },
+                                child: Container(
+                                  width: 301,
+                                  height: 380,
+                                  decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15)),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        width: 255,
+                                        height: 332,
+                                        margin: EdgeInsets.only(top: 37),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              height: 90,
                                               child: Text(
-                                                "Submit",
+                                                "We're sorry the NOCD app missed the mark. Would you mind telling us how we could improve?",
                                                 style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontFamily: "Product Sans",
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                                textAlign: TextAlign.left,
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 180,
-                                            height: 40,
-                                            child: FlatButton(
-                                              onPressed: () =>
-                                                  this.onSkip(context),
-                                              color: Colors.transparent,
-                                              textColor: Color.fromARGB(
-                                                  255, 0, 163, 173),
-                                              padding: EdgeInsets.all(0),
-                                              splashColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              child: Text(
-                                                "Skip",
-                                                style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 33, 33, 33),
                                                   fontSize: 18,
                                                   fontFamily: "Product Sans",
                                                 ),
-                                                textAlign: TextAlign.left,
+                                                textAlign: TextAlign.center,
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                            Container(
+                                              width: 253,
+                                              height: 140,
+                                              margin: EdgeInsets.only(top: 10),
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                  color: Color.fromARGB(
+                                                      255, 151, 151, 151),
+                                                  width: 1,
+                                                ),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(9)),
+                                              ),
+                                              child: TextField(
+                                                decoration: InputDecoration(
+                                                  hintText:
+                                                      "What needs were you unable to meet in the NOCD app? Are there any features that didn't meet your expectations?",
+                                                  contentPadding:
+                                                      EdgeInsets.all(8),
+                                                  border: InputBorder.none,
+                                                ),
+                                                style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 0, 0, 0),
+                                                  fontSize: 18,
+                                                  fontFamily: "Product Sans",
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 182,
+                                              height: 82,
+                                              margin: EdgeInsets.only(top: 10),
+                                              child: Stack(
+                                                alignment: Alignment.center,
+                                                children: [
+                                                  Positioned(
+                                                    top: 0,
+                                                    child: Container(
+                                                      width: 182,
+                                                      height: 42,
+                                                      child: FlatButton(
+                                                        onPressed: () => this
+                                                            .onSubmit(context),
+                                                        color: Color.fromARGB(
+                                                            255, 0, 163, 173),
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            3))),
+                                                        textColor:
+                                                            Color.fromARGB(255,
+                                                                255, 255, 255),
+                                                        padding:
+                                                            EdgeInsets.all(0),
+                                                        highlightColor:
+                                                            Color.fromARGB(255,
+                                                                33, 210, 237),
+                                                        child: Text(
+                                                          "Submit",
+                                                          style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontFamily:
+                                                                "Product Sans",
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                          ),
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Positioned(
+                                                    top: 40,
+                                                    child: Container(
+                                                      width: 182,
+                                                      height: 42,
+                                                      child: FlatButton(
+                                                        onPressed: () => this
+                                                            .onSkip(context),
+                                                        color:
+                                                            Colors.transparent,
+                                                        textColor:
+                                                            Color.fromARGB(255,
+                                                                0, 163, 173),
+                                                        padding:
+                                                            EdgeInsets.all(0),
+                                                        child: Text(
+                                                          "Skip",
+                                                          style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontFamily:
+                                                                "Product Sans",
+                                                          ),
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -498,9 +535,14 @@ class DeleteAccountPage extends StatelessWidget {
                               child: Container(
                                 width: 35,
                                 height: 35,
-                                child: Image.asset(
-                                  "assets/images/group-4.png",
-                                  fit: BoxFit.contain,
+                                child: FlatButton(
+                                  onPressed: () => this.onExitPressed(context),
+                                  color: Colors.transparent,
+                                  textColor: Color.fromARGB(255, 0, 0, 0),
+                                  padding: EdgeInsets.all(0),
+                                  child: Image.asset(
+                                    "assets/images/close.png",
+                                  ),
                                 ),
                               ),
                             ),
