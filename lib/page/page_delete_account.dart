@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-class DeleteAccount1 extends StatelessWidget {
+class DeleteAccountPage extends StatelessWidget {
   void onSubmit(BuildContext context) {}
 
   void onSkip(BuildContext context) {}
 
+  void onExitPressed(BuildContext context) {}
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: buildPage(context));
+    return MaterialApp(home: buildDeleteAccountPage2(context));
   }
 
-  Scaffold buildPage(BuildContext context) {
+  Scaffold buildDeleteAccountPage2(BuildContext context) {
     return Scaffold(
       body: Container(
         constraints: BoxConstraints.expand(),
@@ -67,7 +69,7 @@ class DeleteAccount1 extends StatelessWidget {
                                     Container(
                                       width: 255,
                                       height: 392,
-                                      margin: EdgeInsets.only(top: 37),
+                                      margin: EdgeInsets.only(top: 35),
                                       child: Column(
                                         children: [
                                           Text(
@@ -152,11 +154,14 @@ class DeleteAccount1 extends StatelessWidget {
                                               textColor: Color.fromARGB(
                                                   255, 0, 163, 173),
                                               padding: EdgeInsets.all(0),
+                                              splashColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
                                               child: Text(
                                                 "Skip",
                                                 style: TextStyle(
                                                   fontSize: 18,
-                                                  fontFamily: ".SF NS Text",
+                                                  fontFamily: "Product Sans",
                                                 ),
                                                 textAlign: TextAlign.left,
                                               ),
@@ -202,6 +207,173 @@ class DeleteAccount1 extends StatelessWidget {
                               height: 37,
                               child: Image.asset(
                                 "assets/images/conversation.png",
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Scaffold buildDeleteAccountPage3(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        constraints: BoxConstraints.expand(),
+        decoration: BoxDecoration(
+          color: Color.fromARGB(255, 255, 255, 255),
+        ),
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            Positioned(
+              left: 0,
+              top: 0,
+              right: 0,
+              bottom: 0,
+              child: Opacity(
+                opacity: 0.6,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                  child: Container(),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 72,
+              child: Container(
+                width: 300,
+                height: 256,
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Positioned(
+                      top: 40,
+                      child: Container(
+                        width: 300,
+                        height: 215,
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 300,
+                              height: 180,
+                              margin: EdgeInsets.only(top: 35),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    width: 270,
+                                    child: Text(
+                                      "Your account has been deleted",
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255, 33, 33, 33),
+                                        fontSize: 24,
+                                        fontFamily: "Product Sans",
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 50,
+                                    margin: EdgeInsets.only(top: 6),
+                                    child: Text(
+                                      "We’re sorry to see you go. Hope to have you back soon. ",
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255, 33, 33, 33),
+                                        fontSize: 18,
+                                        fontFamily: "Product Sans",
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 301,
+                                    height: 56,
+                                    margin: EdgeInsets.only(top: 7),
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Positioned(
+                                          top: 0,
+                                          child: Opacity(
+                                            opacity: 0.37,
+                                            child: Container(
+                                              width: 300,
+                                              height: 2,
+                                              decoration: BoxDecoration(
+                                                color: Color.fromARGB(
+                                                    255, 151, 151, 151),
+                                              ),
+                                              child: Container(),
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: 1,
+                                          child: Container(
+                                            width: 300,
+                                            height: 55,
+                                            child: FlatButton(
+                                              onPressed: () =>
+                                                  this.onExitPressed(context),
+                                              color: Colors.transparent,
+                                              textColor: Color.fromARGB(
+                                                  255, 74, 144, 226),
+                                              padding: EdgeInsets.all(0),
+                                              splashColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              child: Text(
+                                                "Exit",
+                                                style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontFamily: "Product Sans",
+                                                ),
+                                                textAlign: TextAlign.left,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 0,
+                      child: Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          borderRadius: BorderRadius.all(Radius.circular(40)),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 39,
+                              height: 37,
+                              child: Image.asset(
+                                "assets/images/waving-hand.png",
                                 fit: BoxFit.contain,
                               ),
                             ),
