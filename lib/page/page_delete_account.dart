@@ -97,9 +97,6 @@ class DeleteAccountPage extends StatelessWidget {
       backgroundColor: HexColor('#00FFFFFF'),
       body: Container(
         constraints: BoxConstraints.expand(),
-        decoration: BoxDecoration(
-          color: Color.fromARGB(255, 255, 255, 255),
-        ),
         child: Stack(
           alignment: Alignment.topCenter,
           children: [
@@ -343,9 +340,6 @@ class DeleteAccountPage extends StatelessWidget {
       backgroundColor: HexColor('#00FFFFFF'),
       body: Container(
         constraints: BoxConstraints.expand(),
-        decoration: BoxDecoration(
-          color: Color.fromARGB(255, 255, 255, 255),
-        ),
         child: Stack(
           alignment: Alignment.topCenter,
           children: [
@@ -592,9 +586,6 @@ class DeleteAccountPage extends StatelessWidget {
       backgroundColor: HexColor('#00FFFFFF'),
       body: Container(
         constraints: BoxConstraints.expand(),
-        decoration: BoxDecoration(
-          color: Color.fromARGB(255, 255, 255, 255),
-        ),
         child: Stack(
           alignment: Alignment.topCenter,
           children: [

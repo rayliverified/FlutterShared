@@ -16,6 +16,7 @@ class AppBloc implements BlocBase {
   static const String CHANNEL_METHOD_NAVIGATION = "CHANNEL_METHOD_NAVIGATION";
   static const String NAVIGATION_BACK = "NAVIGATION_BACK";
   static const String NAVIGATION_CLOSE = "NAVIGATION_CLOSE";
+  static const String CHANNEL_METHOD_BACK_STATUS = "CHANNEL_METHOD_BACK_STATUS";
   static const channel = MethodChannel('app');
 
   String _page = window.defaultRouteName ?? "";
@@ -49,12 +50,12 @@ class AppBloc implements BlocBase {
     // Receive method invocations from platform and return results.
     channel.setMethodCallHandler((MethodCall call) async {
       switch (call.method) {
-        case 'PAGE':
+        case AppBloc.CHANNEL_METHOD_PAGE:
           updatePage(call.arguments);
           return;
-        case 'NAVIGATION':
+        case AppBloc.CHANNEL_METHOD_NAVIGATION:
           switch (call.arguments) {
-            case "BACK":
+            case AppBloc.NAVIGATION_BACK:
               {}
           }
           return;
@@ -78,7 +79,8 @@ class AppBloc implements BlocBase {
   //BEGIN: Back navigation
   void navigateBack() async {
     try {
-      print(await channel.invokeMethod("navigation", "back"));
+      print(await channel.invokeMethod(
+          CHANNEL_METHOD_NAVIGATION, NAVIGATION_BACK));
     } on PlatformException catch (e) {
       print('Failed: ${e.message}');
     } on MissingPluginException {
@@ -88,7 +90,8 @@ class AppBloc implements BlocBase {
 
   void sendBackStatus(bool backStatus) async {
     try {
-      print(await channel.invokeMethod("back_status", backStatus));
+      print(await channel.invokeMethod(
+          AppBloc.CHANNEL_METHOD_BACK_STATUS, backStatus));
     } on PlatformException catch (e) {
       print('Failed: ${e.message}');
     } on MissingPluginException {
@@ -100,7 +103,8 @@ class AppBloc implements BlocBase {
   void navigateClose() async {
     updatePage(RouteSwitcher.PAGE_BLANK);
     try {
-      print(await channel.invokeMethod("navigation", "close"));
+      print(await channel.invokeMethod(
+          AppBloc.CHANNEL_METHOD_NAVIGATION, AppBloc.NAVIGATION_CLOSE));
     } on PlatformException catch (e) {
       print('Failed: ${e.message}');
     } on MissingPluginException {
@@ -144,12 +148,15 @@ class Transparent extends StatelessWidget {
         title: 'Flutter Transparent',
         theme: transparentTheme,
         home: Scaffold(
-          body: Center(
-              child: GestureDetector(
-                  onTap: () {
-                    appBloc.navigate(AppBloc.NAVIGATION_BACK);
-                  },
-                  child: Text('Transparent Scaffold Background'))),
+          body: Container(
+            child: Center(
+                child: GestureDetector(
+                    onTap: () {
+                      appBloc.navigate(AppBloc.NAVIGATION_BACK);
+                    },
+                    child: Text('Transparent Scaffold Background',
+                        style: TextStyle(color: Colors.white)))),
+          ),
           backgroundColor: HexColor('#00FFFFFF'),
         ));
   }
