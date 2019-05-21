@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_android/bloc/BlocProvider.dart';
 import 'package:flutter_android/main.dart';
-import 'package:flutter_android/ui/ui_misc.dart';
 import 'package:flutter_android/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -106,16 +105,13 @@ class DeleteAccountPage extends StatelessWidget {
               top: 0,
               right: 0,
               bottom: 0,
-              child: GestureDetector(
-                onTap: () => this.onExitPressed(context),
-                child: Opacity(
-                  opacity: 0.6,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                    ),
-                    child: Container(),
+              child: Opacity(
+                opacity: 0.6,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 0, 0, 0),
                   ),
+                  child: Container(),
                 ),
               ),
             ),
@@ -204,8 +200,7 @@ class DeleteAccountPage extends StatelessWidget {
                                             ),
                                           ),
                                           Container(
-                                            height: 56,
-                                            margin: EdgeInsets.only(right: 1),
+                                            height: 57,
                                             child: Row(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.stretch,
@@ -214,20 +209,22 @@ class DeleteAccountPage extends StatelessWidget {
                                                   alignment: Alignment.topLeft,
                                                   child: Container(
                                                     width: 149,
-                                                    height: 56,
+                                                    height: 57,
                                                     child: FlatButton(
                                                       onPressed: () => this
                                                           .onExitPressed(
                                                               context),
                                                       color: Colors.transparent,
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                                  bottomLeft: Radius
+                                                                      .circular(
+                                                                          15))),
                                                       textColor: Color.fromARGB(
                                                           255, 74, 144, 226),
                                                       padding:
                                                           EdgeInsets.all(0),
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          highlightRipple(),
                                                       child: Text(
                                                         "Cancel",
                                                         style: TextStyle(
@@ -245,21 +242,23 @@ class DeleteAccountPage extends StatelessWidget {
                                                 Align(
                                                   alignment: Alignment.topLeft,
                                                   child: Container(
-                                                    width: 150,
-                                                    height: 56,
+                                                    width: 149,
+                                                    height: 57,
                                                     child: FlatButton(
                                                       onPressed: () => this
                                                           .onDeletePressed(
                                                               context),
                                                       color: Colors.transparent,
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                                  bottomRight: Radius
+                                                                      .circular(
+                                                                          15))),
                                                       textColor: Color.fromARGB(
                                                           255, 251, 97, 0),
                                                       padding:
                                                           EdgeInsets.all(0),
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          highlightRipple(),
                                                       child: Text(
                                                         "Delete",
                                                         style: TextStyle(
@@ -503,6 +502,8 @@ class DeleteAccountPage extends StatelessWidget {
                                                                 0, 163, 173),
                                                         padding:
                                                             EdgeInsets.all(0),
+                                                        highlightColor:
+                                                            Colors.transparent,
                                                         child: Text(
                                                           "Skip",
                                                           style: TextStyle(
@@ -659,9 +660,9 @@ class DeleteAccountPage extends StatelessWidget {
                                     ),
                                   ),
                                   Container(
-                                    width: 301,
-                                    height: 56,
-                                    margin: EdgeInsets.only(top: 7),
+                                    width: 300,
+                                    height: 58,
+                                    margin: EdgeInsets.only(top: 8),
                                     child: Stack(
                                       alignment: Alignment.center,
                                       children: [
@@ -684,16 +685,20 @@ class DeleteAccountPage extends StatelessWidget {
                                           top: 1,
                                           child: Container(
                                             width: 300,
-                                            height: 55,
+                                            height: 57,
                                             child: FlatButton(
                                               onPressed: () =>
                                                   this.onExitPressed(context),
                                               color: Colors.transparent,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.vertical(
+                                                          bottom:
+                                                              Radius.circular(
+                                                                  15))),
                                               textColor: Color.fromARGB(
                                                   255, 74, 144, 226),
                                               padding: EdgeInsets.all(0),
-                                              splashColor: Colors.transparent,
-                                              highlightColor: highlightRipple(),
                                               child: Text(
                                                 "Exit",
                                                 style: TextStyle(
