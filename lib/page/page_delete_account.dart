@@ -445,6 +445,7 @@ class DeleteAccountPage extends StatelessWidget {
                                                   fontSize: 18,
                                                   fontFamily: "Product Sans",
                                                 ),
+                                                maxLines: null,
                                               ),
                                             ),
                                             Container(
