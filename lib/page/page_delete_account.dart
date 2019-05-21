@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_android/bloc/BlocProvider.dart';
 import 'package:flutter_android/main.dart';
+import 'package:flutter_android/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 enum DeleteAccountPages { DELETE_ACCOUNT_1, DELETE_ACCOUNT_2, DELETE_ACCOUNT_3 }
@@ -93,6 +94,7 @@ class DeleteAccountPage extends StatelessWidget {
 
   Scaffold buildDeleteAccountPage1(BuildContext context) {
     return Scaffold(
+      backgroundColor: HexColor('#00FFFFFF'),
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: BoxDecoration(
@@ -338,6 +340,7 @@ class DeleteAccountPage extends StatelessWidget {
 
   Scaffold buildDeleteAccountPage2(BuildContext context) {
     return Scaffold(
+      backgroundColor: HexColor('#00FFFFFF'),
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: BoxDecoration(
@@ -586,6 +589,7 @@ class DeleteAccountPage extends StatelessWidget {
 
   Scaffold buildDeleteAccountPage3(BuildContext context) {
     return Scaffold(
+      backgroundColor: HexColor('#00FFFFFF'),
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: BoxDecoration(
