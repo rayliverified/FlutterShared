@@ -105,13 +105,16 @@ class DeleteAccountPage extends StatelessWidget {
               top: 0,
               right: 0,
               bottom: 0,
-              child: Opacity(
-                opacity: 0.6,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 0, 0, 0),
+              child: GestureDetector(
+                onTap: () => this.onExitPressed(context),
+                child: Opacity(
+                  opacity: 0.6,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                    ),
+                    child: Container(),
                   ),
-                  child: Container(),
                 ),
               ),
             ),
@@ -348,13 +351,16 @@ class DeleteAccountPage extends StatelessWidget {
               top: 0,
               right: 0,
               bottom: 0,
-              child: Opacity(
-                opacity: 0.6,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 0, 0, 0),
+              child: GestureDetector(
+                onTap: () => this.onExitPressed(context),
+                child: Opacity(
+                  opacity: 0.6,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                    ),
+                    child: Container(),
                   ),
-                  child: Container(),
                 ),
               ),
             ),
