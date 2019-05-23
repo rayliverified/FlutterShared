@@ -53,12 +53,6 @@ class AppBloc implements BlocBase {
         case AppBloc.CHANNEL_METHOD_PAGE:
           updatePage(call.arguments);
           return;
-        case AppBloc.CHANNEL_METHOD_NAVIGATION:
-          switch (call.arguments) {
-            case AppBloc.NAVIGATION_BACK:
-              {}
-          }
-          return;
         default:
           throw MissingPluginException();
       }
@@ -67,20 +61,19 @@ class AppBloc implements BlocBase {
 
   void navigate(String navigation) {
     switch (navigation) {
-      case AppBloc.NAVIGATION_BACK:
-        navigateBack();
-        return;
       case AppBloc.NAVIGATION_CLOSE:
         navigateClose();
         return;
     }
   }
 
-  //BEGIN: Back navigation
-  void navigateBack() async {
+  //END: Back Navigation
+  void navigateClose() async {
+    updateBack(false);
+    updatePage(RouteSwitcher.PAGE_BLANK);
     try {
       print(await channel.invokeMethod(
-          CHANNEL_METHOD_NAVIGATION, NAVIGATION_BACK));
+          AppBloc.CHANNEL_METHOD_NAVIGATION, AppBloc.NAVIGATION_CLOSE));
     } on PlatformException catch (e) {
       print('Failed: ${e.message}');
     } on MissingPluginException {
@@ -92,20 +85,6 @@ class AppBloc implements BlocBase {
     try {
       print(await channel.invokeMethod(
           AppBloc.CHANNEL_METHOD_BACK_STATUS, backStatus));
-    } on PlatformException catch (e) {
-      print('Failed: ${e.message}');
-    } on MissingPluginException {
-      print('Not implemented');
-    }
-  }
-
-  //END: Back Navigation
-  void navigateClose() async {
-    updateBack(false);
-    updatePage(RouteSwitcher.PAGE_BLANK);
-    try {
-      print(await channel.invokeMethod(
-          AppBloc.CHANNEL_METHOD_NAVIGATION, AppBloc.NAVIGATION_CLOSE));
     } on PlatformException catch (e) {
       print('Failed: ${e.message}');
     } on MissingPluginException {
@@ -153,7 +132,7 @@ class Transparent extends StatelessWidget {
             child: Center(
                 child: GestureDetector(
                     onTap: () {
-                      appBloc.navigate(AppBloc.NAVIGATION_BACK);
+                      appBloc.navigate(AppBloc.NAVIGATION_CLOSE);
                     },
                     child: Text('Transparent Scaffold Background',
                         style: TextStyle(color: Colors.white)))),

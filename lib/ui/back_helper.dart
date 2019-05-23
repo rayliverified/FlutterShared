@@ -23,7 +23,7 @@ class BackHelper extends StatelessWidget {
           //Send back event to device for handling.
           if (!Navigator.canPop(context)) {
             appBloc.updateBack(false);
-            appBloc.navigate(AppBloc.NAVIGATION_BACK);
+            appBloc.navigate(AppBloc.NAVIGATION_CLOSE);
             return Future<bool>.value(false);
           }
 
