@@ -29,5 +29,6 @@ flutter:
         - asset: assets/fonts/Product Sans Bold.ttf
           weight: 700
   module:
+    androidX: true
     androidPackage: com.example.flutterandroid
     iosBundleIdentifier: com.example.flutterAndroid
