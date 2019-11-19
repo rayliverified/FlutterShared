@@ -11,44 +11,33 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.my_flutter.host"
+        applicationId "com.treatmyocd.nocd.flutter"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+        profile {
+            initWith debug
+        }
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
-        debug {
-            initWith debug
-        }
     }
-    flavorDimensions "environment"
-    productFlavors {
-        dev {
-            dimension "environment"
-        }
-        qa {
-            dimension "environment"
-        }
-        prod {
-            dimension "environment"
-        }
-    }
+
 }
 buildDir = new File(rootProject.projectDir, "../build/host")
 dependencies {
     implementation project(':flutter')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

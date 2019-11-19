@@ -1,0 +1,6 @@
+platform :ios, '10.0'
+
+target 'Runner' do
+  flutter_application_path = '../'
+  eval(File.read(File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')), binding)
+end

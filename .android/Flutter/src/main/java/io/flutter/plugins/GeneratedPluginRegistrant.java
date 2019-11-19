@@ -1,6 +1,7 @@
 package io.flutter.plugins;
 
 import io.flutter.plugin.common.PluginRegistry;
+import com.ingenio.flutterpubnub.PubnubPlugin;
 
 /**
  * Generated file. Do not edit.
@@ -10,6 +11,7 @@ public final class GeneratedPluginRegistrant {
     if (alreadyRegisteredWith(registry)) {
       return;
     }
+    PubnubPlugin.registerWith(registry.registrarFor("com.ingenio.flutterpubnub.PubnubPlugin"));
   }
 
   private static boolean alreadyRegisteredWith(PluginRegistry registry) {

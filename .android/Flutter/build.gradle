@@ -26,6 +26,9 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.library'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+group 'com.treatmyocd.nocd.flutter'
+version '1.0'
+
 android {
     compileSdkVersion 28
 
@@ -34,24 +37,7 @@ android {
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-    }
-    buildTypes {
-        release {
-        }
-        debug {
-        }
-    }
-    flavorDimensions "environment"
-    productFlavors {
-        dev {
-            dimension "environment"
-        }
-        qa {
-            dimension "environment"
-        }
-        prod {
-            dimension "environment"
-        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 }
 
@@ -60,6 +46,6 @@ flutter {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.annotation:annotation:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
 }

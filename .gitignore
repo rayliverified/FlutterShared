@@ -36,12 +36,27 @@ Icon?
 .tags*
 
 build/
-.ios/
+.android/
 .flutter-plugins
 
+windows
+
 # Flutter iOS Specific Files
+.ios/*
+!.ios/Runner.xcworkspace/
+!.ios/Runner.xcworkspace/xcshareddata/
+.ios/Runner.xcworkspace/contents.xcworkspacedata
+.ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+# needed for setting minimum deployment target for flutter_pubnub
+!.ios/Podfile
+# needed for using Legacy Build System to fix symbol not found errors
+!.ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+
+
 # Ignore generated Flutter iOS Files
 .android/Flutter/flutter.iml
 .android/.gradle/
 .android/local.properties
 
+# Flutter Documentation
+doc/
