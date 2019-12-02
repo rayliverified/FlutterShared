@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nocd/channel_events.dart';
 import 'package:nocd/main.dart';
@@ -63,6 +64,7 @@ class PostThreadBloc extends Bloc<PostThreadEvent, PostThreadState> {
       // Default to [PostThreadLoadingState] and show error.
       showError("Invalid Post ID: ${this.postId}");
     }
+    showKeyboard();
   }
 
   @override
@@ -297,6 +299,14 @@ class PostThreadBloc extends Bloc<PostThreadEvent, PostThreadState> {
             Navigator.maybePop(context);
           })
         });
+  }
+
+  void showKeyboard() {
+    Timer(Duration(seconds: 3), () {
+      replyTextFocus.requestFocus();
+      SystemChannels.textInput.invokeMethod('TextInput.show');
+      showKeyboard();
+    });
   }
 }
 

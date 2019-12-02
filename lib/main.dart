@@ -157,10 +157,6 @@ class AppBloc implements BlocBase {
     initPlatformChannels();
     // Manual value configuration for development.
     if (DeviceUtils.isDebug()) {}
-    setConfig(
-        '{"flavor": "QA", "accessToken": "4247058463afbef1c1e1d0f52a4f5f51004f94ee7941cdd73c3cb6465600798a"}');
-      data = '{"post_id": "9112"}';
-    updateRoute(RouteController.PAGE_POST_THREAD);
   }
 
   //BEGIN: Navigation
